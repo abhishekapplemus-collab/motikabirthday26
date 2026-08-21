@@ -34,6 +34,12 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-cream);
@@ -1537,7 +1543,7 @@
           <div class="spread-photos-grid">
             
             <!-- Photo 1 -->
-            <div class="photo-mount-card" onclick="openLightbox('https://lh3.googleusercontent.com/d/1lpnOeHNS_gmQdpk0x0NLZmWZW1_6r39L', '01 that laugh ✨')">
+            <div class="photo-mount-card" onclick="openLightbox('https://lh3.googleusercontent.com/d/1lpnOeHNS_gmQdpk0x0NLZmWZW1_6r39L', 'golden hour ☀️')">
               <div class="photo-corner-tab pct-tl"></div>
               <div class="photo-corner-tab pct-tr"></div>
               <div class="photo-corner-tab pct-bl"></div>
@@ -1549,7 +1555,7 @@
             </div>
 
             <!-- Photo 2 -->
-            <div class="photo-mount-card" onclick="openLightbox('https://lh3.googleusercontent.com/d/1zsNldsIz3pL3uQBrEwwZ-ixe1AOTJPgB', '02 golden hour ☀️')">
+            <div class="photo-mount-card" onclick="openLightbox('https://lh3.googleusercontent.com/d/1zsNldsIz3pL3uQBrEwwZ-ixe1AOTJPgB', 'that smile 🙃')">
               <div class="photo-corner-tab pct-tl"></div>
               <div class="photo-corner-tab pct-tr"></div>
               <div class="photo-corner-tab pct-bl"></div>
@@ -1561,7 +1567,7 @@
             </div>
 
             <!-- Photo 3 -->
-            <div class="photo-mount-card" onclick="openLightbox('https://lh3.googleusercontent.com/d/1DOIeWnvoFt3c18Fv155iZse6W19G7yJU', '03 partner in crime 🍕')">
+            <div class="photo-mount-card" onclick="openLightbox('https://lh3.googleusercontent.com/d/1DOIeWnvoFt3c18Fv155iZse6W19G7yJU', 'fool with fools 🥀')">
               <div class="photo-corner-tab pct-tl"></div>
               <div class="photo-corner-tab pct-tr"></div>
               <div class="photo-corner-tab pct-bl"></div>
@@ -1569,11 +1575,11 @@
               <div class="photo-frame-inner">
                 <img src="https://lh3.googleusercontent.com/d/1DOIeWnvoFt3c18Fv155iZse6W19G7yJU" alt="Memory 3" />
               </div>
-              <div class="photo-mount-caption"><span>fool with fools🥀</span> </div>
+              <div class="photo-mount-caption"><span>fool with fools🥀</span></div>
             </div>
 
             <!-- Photo 4 -->
-            <div class="photo-mount-card" onclick="openLightbox('https://lh3.googleusercontent.com/d/1AOYFOJZs6-wHmDzindQMF5N4UrBex36P', '04 unforgettable times 💫')">
+            <div class="photo-mount-card" onclick="openLightbox('https://lh3.googleusercontent.com/d/1AOYFOJZs6-wHmDzindQMF5N4UrBex36P', 'again 🥀')">
               <div class="photo-corner-tab pct-tl"></div>
               <div class="photo-corner-tab pct-tr"></div>
               <div class="photo-corner-tab pct-bl"></div>
@@ -1611,6 +1617,12 @@
 
   <!-- SOUND FX & SCRIPT LOGIC -->
   <script>
+    /* ---------------- INSTANT SCROLL RESET & LOCK ---------------- */
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     /* ---------------- CUSTOM CURSOR TRAIL (SPARKLES, STARS & CAKES) ---------------- */
     const trailEmojis = ['✨', '🍰', '⭐', '🎂', '💫', '🧁'];
     let lastTrailTime = 0;
@@ -2274,11 +2286,24 @@
       document.getElementById('lightboxMediaContainer').innerHTML = '';
     }
 
-    /* ---------------- INITIALIZATION ---------------- */
+    /* ---------------- INITIALIZATION & RESET ON LOAD ---------------- */
+    window.addEventListener('beforeunload', () => {
+      window.scrollTo(0, 0);
+    });
+
     window.addEventListener('DOMContentLoaded', () => {
+      window.scrollTo(0, 0);
+      document.body.classList.remove('fully-unlocked');
+
       initScratchCard('scratch1', 'Rant & Vent Pass');
       initScratchCard('scratch2', 'Food & Treats Pass');
       initScratchCard('scratch3', 'Emergency Backup Pass');
+    });
+
+    window.addEventListener('load', () => {
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     });
   </script>
 </body>
